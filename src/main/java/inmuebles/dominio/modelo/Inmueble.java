@@ -13,7 +13,11 @@ public abstract class Inmueble {
     protected Inmueble(String chip, LocalDate fechaCompra, String direccion,
                        EstadoInmueble estado, Propietario propietario) {
         this.chip = requerido(chip, "El CHIP es obligatorio.");
-        this.fechaCompra = Objects.requireNonNull(fechaCompra, "La fecha de compra es obligatoria.");
+        Objects.requireNonNull(fechaCompra, "La fecha de compra es obligatoria.");
+        if (fechaCompra.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("La fecha de compra no puede ser posterior a la fecha actual.");
+        }
+        this.fechaCompra = fechaCompra;
         this.direccion = requerido(direccion, "La dirección es obligatoria.");
         this.estado = Objects.requireNonNull(estado, "El estado es obligatorio.");
         this.propietario = Objects.requireNonNull(propietario, "El propietario es obligatorio.");

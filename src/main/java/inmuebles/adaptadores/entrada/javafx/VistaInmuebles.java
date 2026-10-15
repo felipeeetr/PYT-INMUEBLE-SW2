@@ -151,7 +151,10 @@ public final class VistaInmuebles {
         campos.add(camposEspecificos, 0, fila);
         Button nuevo = new Button("Nuevo");
         nuevo.setOnAction(evento -> limpiarFormulario());
-        HBox acciones = new HBox(10, guardar, nuevo, eliminar);
+        guardar.setMaxWidth(Double.MAX_VALUE);
+        nuevo.setMaxWidth(Double.MAX_VALUE);
+        eliminar.setMaxWidth(Double.MAX_VALUE);
+        VBox acciones = new VBox(8, guardar, nuevo, eliminar);
         VBox formulario = new VBox(14, titulo, campos, acciones);
         formulario.getStyleClass().add("formulario");
         formulario.setPadding(new Insets(18));
